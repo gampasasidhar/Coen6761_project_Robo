@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Robot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Coen6761_Project</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Robot.java</span></div><h1>Robot.java</h1><pre class="source lang-java linenums">
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+<span class="fc" id="L7">public class Robot {</span>
+<span class="fc" id="L8">List&lt;int[]&gt; way = new ArrayList&lt;&gt;();</span>
+int x_Coordinate, y_Coordinate;
+   boolean Pendown;
+   int[][] Room;
+   int Room_size;
+   
+   
+<span class="fc" id="L15">   final String NORTH = &quot;north&quot;, EAST = &quot;east&quot;, SOUTH = &quot;south&quot;,WEST = &quot;west&quot; ;</span>
+<span class="fc" id="L16">   String Direction = NORTH;</span>
+   
+<span class="fc" id="L18">   Scanner Temp = new Scanner(System.in);</span>
+
+
+public static void main(String[] args) {
+<span class="nc" id="L22">       Robot Robo = new Robot();</span>
+<span class="nc" id="L23">       System.out.println(&quot;\t\t\t\t\t Welcome&quot;);</span>
+<span class="nc" id="L24">       System.out.println(&quot;--------------------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L25">       System.out.println(&quot;Inital Conditions : Position(0,0), Robo is facing North, Pen is up&quot;);</span>
+<span class="nc" id="L26">       System.out.println(&quot;--------------------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L27">       System.out.println(&quot;Please enter a command to process&quot;);</span>
+<span class="nc" id="L28">       Robo.Start();</span>
+<span class="nc" id="L29">   }</span>
+
+   public void Start() {
+       while (true) {
+<span class="nc" id="L33">           System.out.print(&quot;&gt; &quot;);</span>
+<span class="nc" id="L34">           String Input = Temp.nextLine();</span>
+<span class="nc" id="L35">           Input_command(Input);</span>
+<span class="nc" id="L36">       }</span>
+   }
+
+
+   public void Input_command(String command){
+<span class="fc" id="L41">       String[] Value = command.split(&quot; &quot;);</span>
+<span class="fc" id="L42">       String k = Value[0].toUpperCase();</span>
+<span class="fc" id="L43">       int Positions = 0;</span>
+
+
+<span class="fc bfc" id="L46" title="All 10 branches covered.">       switch (k) {</span>
+
+           case &quot;I&quot;:
+<span class="fc bfc" id="L49" title="All 2 branches covered.">               if (!(Value[1].matches(&quot;\\d+&quot;))){</span>
+<span class="fc" id="L50">                   System.out.println(&quot;Error, I can only accept Integer values&quot;);</span>
+<span class="fc" id="L51">                   break;</span>
+               }
+<span class="fc" id="L53">               Room_size = Integer.parseInt(Value[1]);</span>
+<span class="fc" id="L54">               Room = new int[Room_size][Room_size];</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">               for (int i = 0; i &lt; Room_size; i++) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                   for (int j = 0; j &lt; Room_size; j++) {</span>
+<span class="fc" id="L57">                       Room[i][j] = 0;</span>
+                   }
+               }
+<span class="fc" id="L60">               x_Coordinate = 0;</span>
+<span class="fc" id="L61">               y_Coordinate = 0;</span>
+<span class="fc" id="L62">               Pendown = false;</span>
+<span class="fc" id="L63">               Direction = NORTH;</span>
+<span class="fc" id="L64">               System.out.println(&quot;Room is set to &quot; + Room_size + &quot; x &quot; + Room_size + &quot; array.&quot;);</span>
+<span class="fc" id="L65">               break;</span>
+
+           case &quot;C&quot;:
+<span class="fc bfc" id="L68" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L69">                   System.out.println(&quot;Error, C cant accept any additional values&quot;);</span>
+<span class="fc" id="L70">                   break;</span>
+               }
+<span class="fc" id="L72">               System.out.println(&quot;Position: &quot; + x_Coordinate + &quot;, &quot; + y_Coordinate + &quot; - Pen: &quot;</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                       + (Pendown ? &quot;down&quot; : &quot;up&quot;) + &quot; - Facing: &quot; + Direction);</span>
+<span class="fc" id="L74">               break;</span>
+               
+           case &quot;D&quot;:
+<span class="fc bfc" id="L77" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L78">                   System.out.println(&quot;Error, D cant accept any additional values&quot;);</span>
+<span class="fc" id="L79">                   break;</span>
+               }
+<span class="fc" id="L81">               Pendown = true;</span>
+<span class="fc" id="L82">               System.out.println(&quot;Pen is down.&quot;);</span>
+<span class="fc" id="L83">               updateRoom();</span>
+<span class="fc" id="L84">               break;</span>
+           case &quot;U&quot;:
+<span class="fc bfc" id="L86" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L87">                   System.out.println(&quot;Error, U cant accept any additional values&quot;);</span>
+<span class="fc" id="L88">                   break;</span>
+               }
+<span class="fc" id="L90">               Pendown = false;</span>
+<span class="fc" id="L91">               System.out.println(&quot;Pen is up.&quot;);</span>
+<span class="fc" id="L92">               updateRoom();</span>
+<span class="fc" id="L93">               break;</span>
+           case &quot;M&quot;:
+<span class="fc bfc" id="L95" title="All 2 branches covered.">               if(Room_size==0){</span>
+<span class="fc" id="L96">                System.out.println(&quot;initialise Room to move&quot;);</span>
+<span class="fc" id="L97">                break;</span>
+               }
+<span class="fc bfc" id="L99" title="All 2 branches covered.">               if (Value.length &lt; 2){</span>
+<span class="fc" id="L100">                System.out.println(&quot;Error, M need two values to process&quot;);</span>
+<span class="fc" id="L101">                break;</span>
+            }
+<span class="fc bfc" id="L103" title="All 2 branches covered.">               if (!(Value[1].matches(&quot;\\d+&quot;))){</span>
+<span class="fc" id="L104">                   System.out.println(&quot;Error, M can only accept Integer values&quot;);</span>
+<span class="fc" id="L105">                   break;</span>
+               }
+<span class="fc" id="L107">               Positions = Integer.parseInt(Value[1]);</span>
+<span class="fc" id="L108">               move(Positions);</span>
+<span class="fc" id="L109">               break;</span>
+               case &quot;L&quot;:
+<span class="fc bfc" id="L111" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L112">               System.out.println(&quot;Error, L cant accept any additional values&quot;);</span>
+<span class="fc" id="L113">               break;</span>
+               }
+<span class="fc" id="L115">               Move_Left();</span>
+<span class="fc" id="L116">               break;</span>
+               case &quot;R&quot;:
+<span class="fc bfc" id="L118" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L119">               System.out.println(&quot;Error, R cant accept any additional values&quot;);</span>
+<span class="fc" id="L120">               break;</span>
+               }
+<span class="fc" id="L122">               Move_Right();</span>
+<span class="fc" id="L123">                break;</span>
+               case &quot;P&quot;:
+<span class="fc bfc" id="L125" title="All 2 branches covered.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L126">                   System.out.println(&quot;Error, P cant accept any additional values&quot;);</span>
+<span class="fc" id="L127">                    break;</span>
+                  }
+<span class="fc" id="L129">               updateRoom();</span>
+<span class="fc" id="L130">               Room_Map();</span>
+<span class="fc" id="L131">               break;</span>
+               case &quot;Q&quot;:
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">               if (Value.length &gt; 1) {</span>
+<span class="fc" id="L134">               System.out.println(&quot;Error, Q cant accept any additional values&quot;);</span>
+<span class="fc" id="L135">               break;</span>
+               }
+<span class="nc" id="L137">               System.out.println(&quot;Terminating Robot&quot;);</span>
+<span class="nc" id="L138">               System.exit(0);</span>
+<span class="nc" id="L139">               break;</span>
+               default:
+<span class="fc" id="L141">               System.out.println(&quot;Error,Command not supported&quot;);</span>
+               break;
+               }
+<span class="fc" id="L144">               }</span>
+               public void move(int Positions) {
+<span class="fc" id="L146">                   updateRoom();</span>
+<span class="fc" id="L147">                   int Temp_X = x_Coordinate;</span>
+<span class="fc" id="L148">                   int Temp_Y = y_Coordinate;</span>
+<span class="pc bpc" id="L149" title="1 of 5 branches missed.">                   switch (Direction) {</span>
+                       case NORTH:
+<span class="fc" id="L151">                       Temp_Y = y_Coordinate + Positions;</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">                       if (Temp_Y &gt;= Room_size) {System.out.println(&quot;Movement out of Room not allowed&quot;);</span>
+                       
+                   }
+                           
+                           break;
+                       case EAST:
+<span class="fc" id="L158">                       Temp_X = x_Coordinate + Positions;</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">                       if (Temp_X &gt;= Room_size) {</span>
+<span class="fc" id="L160">                           System.out.println(&quot;Movement out of Room not allowed&quot;);</span>
+                         
+                       }
+                           break;
+                       case SOUTH:
+<span class="fc" id="L165">                       Temp_Y = y_Coordinate - Positions;</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">                       if (Temp_Y &lt; 0) {</span>
+<span class="fc" id="L167">                           System.out.println(&quot;Movement out of Room not allowed&quot;);</span>
+                           
+                       }
+                           break;
+                       case WEST:
+<span class="fc" id="L172">                       Temp_X = x_Coordinate - Positions;</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">                       if (Temp_X &lt; 0) {</span>
+<span class="fc" id="L174">                           System.out.println(&quot;Movement out of Room not allowed&quot;);</span>
+                       
+                       }
+                           break;
+                   }
+<span class="fc bfc" id="L179" title="All 8 branches covered.">                   if (Temp_X &gt;= 0 &amp;&amp; Temp_X &lt; Room_size &amp;&amp; Temp_Y &gt;= 0 &amp;&amp; Temp_Y &lt; Room_size) {</span>
+<span class="fc" id="L180">                       int xDiff = Temp_X - x_Coordinate;</span>
+<span class="fc" id="L181">                       int yDiff = Temp_Y - y_Coordinate;</span>
+           
+                       
+<span class="fc bfc" id="L184" title="All 2 branches covered.">                       if (Pendown) {</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">                    	   for (int i = 0; i &lt;= Positions; i++) {</span>
+<span class="fc" id="L186">                               way.add(new int[] { x_Coordinate + i * xDiff / Positions, y_Coordinate + i * yDiff / Positions });</span>
+                           }
+<span class="fc" id="L188">                           x_Coordinate = Temp_X;</span>
+<span class="fc" id="L189">                           y_Coordinate = Temp_Y;</span>
+<span class="fc" id="L190">                           System.out.println(&quot;Moved to position: &quot; + x_Coordinate + &quot;, &quot; + y_Coordinate + &quot;\n&quot;);</span>
+<span class="fc" id="L191">                           way.add(new int[] { x_Coordinate, y_Coordinate });</span>
+<span class="fc" id="L192">                           updateRoom();</span>
+                       } else {
+<span class="fc" id="L194">                           System.out.println(&quot;Robot is moving freely as pen is up, the new coordinates are: &quot; + Temp_X + &quot;, &quot;</span>
+                                   + Temp_Y + &quot; (not updated to print in Room map)\n&quot;);
+<span class="fc" id="L196">                           x_Coordinate = Temp_X;</span>
+<span class="fc" id="L197">                           y_Coordinate = Temp_Y;</span>
+                       }
+                   } 
+<span class="fc" id="L200">               }</span>
+               
+               public void Move_Right() {
+<span class="pc bpc" id="L203" title="1 of 5 branches missed.">                   switch (Direction) {</span>
+                       case NORTH:
+<span class="fc" id="L205">                           Direction = EAST;</span>
+<span class="fc" id="L206">                           break;</span>
+                       case EAST:
+<span class="fc" id="L208">                           Direction = SOUTH;</span>
+<span class="fc" id="L209">                           break;</span>
+                       case SOUTH:
+<span class="fc" id="L211">                           Direction = WEST;</span>
+<span class="fc" id="L212">                           break;</span>
+                       case WEST:
+<span class="fc" id="L214">                           Direction = NORTH;</span>
+                           break;
+                   }
+<span class="fc" id="L217">                   System.out.println(&quot;Rotated right.Robo is currently Facing: &quot; + Direction);</span>
+<span class="fc" id="L218">               }</span>
+               
+               public void Move_Left() {
+<span class="pc bpc" id="L221" title="1 of 5 branches missed.">                   switch (Direction) {</span>
+                       case NORTH:
+<span class="fc" id="L223">                           Direction = WEST;</span>
+<span class="fc" id="L224">                           break;</span>
+                       case WEST:
+<span class="fc" id="L226">                           Direction = SOUTH;</span>
+<span class="fc" id="L227">                           break;</span>
+                       case SOUTH:
+<span class="fc" id="L229">                           Direction = EAST;</span>
+<span class="fc" id="L230">                           break;</span>
+                       case EAST:
+<span class="fc" id="L232">                           Direction = NORTH;</span>
+                           break;
+                   }
+<span class="fc" id="L235">                   System.out.println(&quot;Rotated Left.Robo is currently Facing: &quot; + Direction);</span>
+<span class="fc" id="L236">                   }</span>
+               public void updateRoom() {
+<span class="fc bfc" id="L238" title="All 2 branches covered.">                   if (Pendown) {</span>
+<span class="fc" id="L239">                       Room[x_Coordinate][y_Coordinate] = 1;</span>
+                   }
+<span class="fc" id="L241">               }</span>
+               public void Room_Map() {
+<span class="fc" id="L243">                   System.out.println(&quot;&quot;);</span>
+<span class="fc bfc" id="L244" title="All 2 branches covered.">                   for (int j = Room_size - 1; j &gt;= 0; j--) {</span>
+<span class="fc" id="L245">                       System.out.print(&quot; &quot; + String.format(&quot;%02d&quot;, j) + &quot; &quot;);</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">                       for (int i = 0; i &lt; Room_size; i++) {</span>
+<span class="fc" id="L247">                           boolean hold = false;</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">                           for (int[] pos : way) {</span>
+<span class="fc bfc" id="L249" title="All 4 branches covered.">                               if (i == pos[0] &amp;&amp; j == pos[1]) {</span>
+<span class="fc" id="L250">                                   System.out.print(&quot; * &quot;);</span>
+<span class="fc" id="L251">                                   hold = true;</span>
+<span class="fc" id="L252">                                   break;</span>
+                               }
+<span class="fc" id="L254">                           }</span>
+<span class="fc bfc" id="L255" title="All 2 branches covered.">                           if (!hold) {</span>
+                               
+<span class="fc" id="L257">                                   System.out.print(&quot; - &quot;);</span>
+                            
+                           }
+                       }
+<span class="fc" id="L261">                       System.out.println(&quot;&quot;);</span>
+                   }
+<span class="fc" id="L263">                   System.out.print(&quot;    &quot;);</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">                   for (int i = 0; i &lt; Room_size; i++) {</span>
+<span class="fc" id="L265">                       System.out.print(String.format(&quot; %02d&quot;, i));</span>
+                   }
+<span class="fc" id="L267">                   System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L268">               }</span>
+               
+           }                
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

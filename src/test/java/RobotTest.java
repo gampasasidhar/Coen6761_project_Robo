@@ -96,6 +96,10 @@ public class RobotTest {
         
         robo.Input_command("I 5");   
         robo.Input_command("R");
+        robo.Input_command("R");
+        robo.Input_command("R");
+        robo.Input_command("R");
+        robo.Input_command("R");
         assertEquals("east", robo.Direction);
     	}
     
@@ -115,6 +119,8 @@ public class RobotTest {
         robo.Input_command("I 5"); 
         robo.Input_command("R"); 
         robo.Input_command("R");
+        robo.Input_command("R");
+        robo.Input_command("L");
         robo.Input_command("L");
         //System.out.println("Returned String: "+ robot.Direction);
       
@@ -256,6 +262,7 @@ public class RobotTest {
         assertEquals(3, robo.x_Coordinate);
         assertEquals(7, robo.y_Coordinate);
         
+        
    
     }
     
@@ -282,7 +289,43 @@ public class RobotTest {
          assertTrue(actualoutput.contains(expectedoutput));
          System.setOut(temp2);
          
+         robo.Input_command("I 10");
+    	 robo.Input_command("D");
+    	 ByteArrayOutputStream temp4 = new ByteArrayOutputStream();
+         PrintStream temp3 = System.out;
+         System.setOut(new PrintStream(temp4));
+         robo.Input_command("r");
+         robo.Input_command("M 12");
+         String actualoutput1 = temp1.toString(), expectedoutput1="Movement out of Room not allowed";
+         assertTrue(actualoutput1.contains(expectedoutput1));
+         System.setOut(temp3);
+         
+         robo.Input_command("I 10");
+    	 robo.Input_command("D");
+    	 ByteArrayOutputStream temp5 = new ByteArrayOutputStream();
+         PrintStream temp6 = System.out;
+         System.setOut(new PrintStream(temp5));
+         robo.Input_command("r");
+         robo.Input_command("r");
+         robo.Input_command("M 12");
+         String actualoutput3 = temp1.toString(), expectedoutput3="Movement out of Room not allowed";
+         assertTrue(actualoutput3.contains(expectedoutput3));
+         System.setOut(temp6);
+         
+         robo.Input_command("I 10");
+    	 robo.Input_command("D");
+    	 ByteArrayOutputStream temp7 = new ByteArrayOutputStream();
+         PrintStream temp8 = System.out;
+         System.setOut(new PrintStream(temp7));
+         robo.Input_command("r");
+         robo.Input_command("r");
+         robo.Input_command("r");
+         robo.Input_command("M 12");
+         String actualoutput4 = temp1.toString(), expectedoutput4="Movement out of Room not allowed";
+         assertTrue(actualoutput4.contains(expectedoutput4));
+         System.setOut(temp8);
     }
+    
 
     /*Test case 4 
 	  Testers Name : Sai kumar reddy
@@ -322,6 +365,15 @@ public class RobotTest {
     
     @Test
     public void testcommandarguments() {
+    	
+    	 ByteArrayOutputStream temp22 = new ByteArrayOutputStream();
+         PrintStream temp23 = System.out;
+         System.setOut(new PrintStream(temp22));
+         robo.Input_command("m 4");
+         String actualoutput15 = temp22.toString(), expectedoutput15="initialise";
+         assertTrue(actualoutput15.contains(expectedoutput15));
+         System.setOut(temp23);
+    	
     	robo.Input_command("I 47");
     	
     	//check for other command to pass argument which is not a integer
@@ -338,7 +390,7 @@ public class RobotTest {
          PrintStream temp4 = System.out;
          System.setOut(new PrintStream(temp3));
          robo.Input_command("I $");
-         String actualoutput1 = temp1.toString(), expectedoutput1="Error";
+         String actualoutput1 = temp3.toString(), expectedoutput1="Error";
          assertTrue(actualoutput1.contains(expectedoutput1));
          System.setOut(temp4);
         
@@ -347,9 +399,74 @@ public class RobotTest {
          PrintStream temp6 = System.out;
          System.setOut(new PrintStream(temp5));
          robo.Input_command("r 6");
-         String actualoutput2 = temp1.toString(), expectedoutput2="Error";
+         String actualoutput2 = temp5.toString(), expectedoutput2="Error";
          assertTrue(actualoutput2.contains(expectedoutput2));
          System.setOut(temp6);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp7 = new ByteArrayOutputStream();
+         PrintStream temp8 = System.out;
+         System.setOut(new PrintStream(temp7));
+         robo.Input_command("c 6");
+         String actualoutput3 = temp7.toString(), expectedoutput3="Error";
+         assertTrue(actualoutput3.contains(expectedoutput3));
+         System.setOut(temp8);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp9 = new ByteArrayOutputStream();
+         PrintStream temp10 = System.out;
+         System.setOut(new PrintStream(temp9));
+         robo.Input_command("l 6");
+         String actualoutput4 = temp9.toString(), expectedoutput4="Error";
+         assertTrue(actualoutput4.contains(expectedoutput4));
+         System.setOut(temp10);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp12 = new ByteArrayOutputStream();
+         PrintStream temp13 = System.out;
+         System.setOut(new PrintStream(temp12));
+         robo.Input_command("u 9");
+         String actualoutput5 = temp12.toString(), expectedoutput5="Error";
+         assertTrue(actualoutput5.contains(expectedoutput5));
+         System.setOut(temp13);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp14 = new ByteArrayOutputStream();
+         PrintStream temp15 = System.out;
+         System.setOut(new PrintStream(temp14));
+         robo.Input_command("p 9");
+         String actualoutput6 = temp14.toString(), expectedoutput6="Error";
+         assertTrue(actualoutput6.contains(expectedoutput6));
+         System.setOut(temp15);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp17 = new ByteArrayOutputStream();
+         PrintStream temp16 = System.out;
+         System.setOut(new PrintStream(temp17));
+         robo.Input_command("q 9");
+         String actualoutput7 = temp17.toString(), expectedoutput7="Error";
+         assertTrue(actualoutput7.contains(expectedoutput7));
+         System.setOut(temp16);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp18 = new ByteArrayOutputStream();
+         PrintStream temp19 = System.out;
+         System.setOut(new PrintStream(temp18));
+         robo.Input_command("d 22");
+         String actualoutput8 = temp18.toString(), expectedoutput8="Error";
+         assertTrue(actualoutput8.contains(expectedoutput8));
+         System.setOut(temp19);
+         
+       //check for other command to pass extra argument which supports only one argument
+         ByteArrayOutputStream temp20 = new ByteArrayOutputStream();
+         PrintStream temp21 = System.out;
+         System.setOut(new PrintStream(temp20));
+         robo.Input_command("m");
+         String actualoutput11 = temp20.toString(), expectedoutput11="Error";
+         assertTrue(actualoutput11.contains(expectedoutput11));
+         System.setOut(temp21);
+        
+         
     }
     
     /*Test case 12 

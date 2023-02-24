@@ -36,11 +36,7 @@ public static void main(String[] args) {
        }
    }
 
-   public boolean process() {
-	   return process;
-   }
-   
-   boolean process = true ;
+
    public void Input_command(String command){
        String[] Value = command.split(" ");
        String k = Value[0].toUpperCase();
@@ -139,7 +135,6 @@ public static void main(String[] args) {
                break;
                }
                System.out.println("Terminating Robot");
-                process = false;
                System.exit(0);
                break;
                default:
@@ -201,11 +196,7 @@ public static void main(String[] args) {
                            x_Coordinate = Temp_X;
                            y_Coordinate = Temp_Y;
                        }
-                       //return true;
-                   } else {
-                       //System.out.println("Movement out of Room not allowed");
-                       //return false;
-                   }
+                   } 
                }
                
                public void Move_Right() {
