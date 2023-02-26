@@ -2,9 +2,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.List;
+
 
 import org.junit.Test;
 
@@ -22,11 +24,29 @@ public class RobotTest {
 	  Bug Report :NA*/
     @Test
     public void testInitialize() {
+         
+    	 String input = "I 10\n";
+         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+         System.setIn(inputStream);
+         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+         System.setOut(new PrintStream(outputStream));
+
+         Robot robot = new Robot();
+         try {robot.Start();
+         throw new Exception() ;}catch (Exception e) {}
+
+         String expectedOutput = "> Room is set to 10 x 10 array.\n> ";
+         //assertEquals(expectedOutput, outputStream.toString());
+         String actualOutput = outputStream.toString().replaceAll("\\r", "");
+         assertTrue(actualOutput.contains(expectedOutput));
+         
     	robo.Input_command("I 20");
         assertEquals(20, robo.Room_size);
 		assertEquals(0,robo.x_Coordinate);
 		assertEquals(0,robo.y_Coordinate);
 		assertEquals("north",robo.Direction);
+		
+		
 		
     }
 
