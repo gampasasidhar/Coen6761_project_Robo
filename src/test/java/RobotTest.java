@@ -181,7 +181,12 @@ public class RobotTest {
     @Test
     /*This test case to check */
     public void testcommandcase() {
-    	
+    	robo.x_Coordinate = 2;
+        robo.y_Coordinate = 3;
+        robo.Pendown = true;
+        robo.Direction = "east";
+        robo.Input_command("R");
+        assertEquals("south",robo.Direction);
         robo.Input_command("r");
         assertEquals("west",robo.Direction);
         
