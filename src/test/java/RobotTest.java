@@ -187,7 +187,6 @@ public class RobotTest {
         robo.Direction = "east";
         robo.Input_command("R");
         assertEquals("south",robo.Direction);
-        
         robo.Input_command("r");
         assertEquals("west",robo.Direction);
         
