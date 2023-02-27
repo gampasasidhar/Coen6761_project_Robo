@@ -234,7 +234,10 @@ public static void main(String[] args) {
                    }
                    System.out.println("Rotated Left.Robo is currently Facing: " + Direction);
                    }
-           
+               public void updateRoom() {
+                   if (Pendown) {
+                       Room[x_Coordinate][y_Coordinate] = 1;
+                   }
                }
                public void Room_Map() {
                    System.out.println("");
