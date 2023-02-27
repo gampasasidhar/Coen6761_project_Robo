@@ -236,7 +236,7 @@ public static void main(String[] args) {
                    }
                public void updateRoom() {
                    if (Pendown) {
-                       Room[x_Coordinate][y_Coordinate] = 1;
+                      
                    }
                }
                public void Room_Map() {
